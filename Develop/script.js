@@ -12,13 +12,12 @@ function startPrompt() {
 if (pwLength >= 8 && pwLength <= 128) {   
     generatePassword()
   } else {
-  alert("ATTENTION: Password length too short. Please pick a number between 8 and 128");
+  alert("ATTENTION: Password length is too short. Please pick a number between 8 and 128");
 }
 }
 
-
-
-var passwordArray = [ /*need to figure out how to select chosen arrays in here*/ ]
+var combinedArray;
+var combinedArrayFull;
 
 //TODO: Right the loop
 function generatePassword() {
@@ -32,15 +31,50 @@ function generatePassword() {
   console.log(number)
   console.log(special)
 
-  /*
-for (i = 0; i < startPrompt.pwLength; i++) {
-  //function getRandom() = getRandom(startPrompt.pwLength) ??
-  //insert combined array option here [Number from getRandom sequence here] ??
-  
-}*/
+  function mergeArray() {
+      if (lower === true) {
+        combinedArrayFull = combinedArray.concat(alphaCharacters);
+        console.log("Lowercase letters have now added to your password")
+      } else {
+        console.log("lowercase letters not selected")
+      };
+      if (upper === true) {
+        combinedArrayFull = combinedArray.concat(capitalLetters);
+        console.log("Uppercase letters have now added to your password")
+      } else {
+        console.log("uppercase letters not selected")
+      };
+      if (number === true) {
+        combinedArrayFull = combinedArray.concat(numericCharacters)
+        console.log("Numbers have now added to your password")
+      } else {
+        console.log("numbers were not selected")
+      };
+      if (special === true) {
+        combinedArrayFull = combinedArray.concat(specialCharacters)
+        console.log("Special characters have now been added to your password")
+      } else {
+        console.log("special characters were not selected")
+      }
+  }
+
+  console.log(combinedArrayFull)
+
+  var output = ' ';
+
+  for (let i = 0; i < startPrompt.pwLength; i++) {
+    output += combinedArrayFull.charAt(Math.floor(Math.random() * combinedArrayFull.length));
+  }
+
+  return output;
+
 }
 
-// Write password to the #password input
+
+
+
+
+//Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -52,4 +86,3 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-generatePassword()
