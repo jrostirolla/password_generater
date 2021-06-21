@@ -102,6 +102,9 @@ button[disabled] {
   -moz-appearance: none;
   appearance: none;
   border: none;
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  user-select: all;
   display: block;
   width: 100%;
   padding-top: 15px;
