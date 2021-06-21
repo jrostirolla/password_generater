@@ -6,17 +6,19 @@ let numericCharacters = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" ]
 let alphaCharacters = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ]
 let capitalLetters = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" ]
 let pwLength = null;
+let combinedArrayFull = []
 
 function startPrompt() {
-    pwLength = parseInt(prompt("How long would you like your password to be?", "Choose a num between 8 - 128"));     
-if (pwLength >= 8 && pwLength <= 128) {   
-    generatePassword()
-  } else {
-  alert("ATTENTION: Password length is too short. Please pick a number between 8 and 128");
-}
-}
+  //TODO: Clears array to refresh PW - Work In Progress
+    combinedArrayFull.splice(0, combinedArrayFull.length)
 
-let combinedArrayFull = []
+    pwLength = parseInt(prompt("How long would you like your password to be?", "Choose a num between 8 - 128"));     
+if (pwLength >= 8 && pwLength <= 128) { 
+  
+  } else {
+  alert("ATTENTION: Password length is too short. For better password strength, please pick a number between 8 and 128");
+}
+}
 
 //TODO: Right the loop
 function generatePassword() {
@@ -25,12 +27,8 @@ function generatePassword() {
   var number = document.getElementById("number").checked
   var special = document.getElementById("special").checked
 
-  console.log(lower)
-  console.log(upper)
-  console.log(number)
-  console.log(special)
-
   function mergeArray() {
+    if (lower === true || upper === true || number === true || special === true) {
       if (lower === true) {
         combinedArrayFull = combinedArrayFull.concat(alphaCharacters);
         console.log("Lowercase letters have now been added to your password")
@@ -55,6 +53,9 @@ function generatePassword() {
       } else {
         console.log("special characters were not selected")
       }
+    } else {
+      alert("No characters selected. Please select your desired selectors below");
+    }
   }
   mergeArray();
 console.log(combinedArrayFull)
